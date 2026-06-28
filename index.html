@@ -680,6 +680,168 @@
       color: var(--white);
     }
 
+    /* ── Hero machine photo ── */
+    .hero-machine-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .machine-photo-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .machine-photo-wrap img {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.65);
+      display: block;
+    }
+
+    .no-cost-badge {
+      position: absolute;
+      bottom: -18px;
+      right: -18px;
+      z-index: 2;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+    }
+
+    /* ── Machines Showcase ── */
+    #machines {
+      background: var(--navy);
+    }
+
+    #machines .section-title {
+      color: var(--white);
+    }
+
+    #machines .section-label {
+      color: var(--orange);
+      border-color: var(--orange);
+    }
+
+    #machines .divider-text {
+      color: var(--white);
+    }
+
+    #machines .divider::before,
+    #machines .divider::after {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .machines-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .machine-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      transition: border-color 0.25s;
+    }
+
+    .machine-card:hover {
+      border-color: var(--orange);
+    }
+
+    .mc-svg-wrap {
+      width: 100%;
+    }
+
+    .mc-svg-wrap img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      height: 280px;
+      display: block;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+    }
+
+    .mc-body {
+      width: 100%;
+    }
+
+    .mc-body h3 {
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.2rem;
+    }
+
+    .mc-sub {
+      color: var(--orange);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.85rem;
+    }
+
+    .mc-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .mc-features li {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .mc-features li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .product-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 3rem;
+    }
+
+    .product-pill {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 50px;
+      padding: 0.4rem 1rem;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* ── Ideal For photo cards ── */
+    .ideal-card .card-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.38;
+      border-radius: var(--radius);
+    }
+
     /* ── Responsive ── */
     @media (max-width: 900px) {
       #hero {
@@ -692,8 +854,16 @@
         justify-content: center;
       }
 
+      .machine-photo-wrap {
+        max-width: 260px;
+      }
+
       .services-grid {
         grid-template-columns: repeat(3, 1fr);
+      }
+
+      .machines-grid {
+        grid-template-columns: 1fr;
       }
 
       .ideal-grid {
@@ -728,6 +898,20 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
+      .machines-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .machine-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .mc-features li {
+        justify-content: center;
+      }
+
       .ideal-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -757,6 +941,7 @@
     </a>
     <ul>
       <li><a href="#services">Services</a></li>
+      <li><a href="#machines">Machines</a></li>
       <li><a href="#ideal">Locations</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -778,20 +963,43 @@
       </div>
     </div>
     <div class="hero-right">
-      <div class="vending-visual">
-        <div class="machine-icon">🏔️</div>
-        <div class="no-cost-badge">
-          <div class="icon">🤝</div>
-          <strong>No Upfront Cost</strong>
-          <span>We invest. You enjoy the benefits.</span>
-        </div>
-        <div class="serving-badge">
-          <strong>📍 Proudly Serving</strong>
-          Local businesses across the region
+      <div class="hero-machine-wrap">
+        <div class="machine-photo-wrap">
+          <img src="images/machine-hero.jpg" alt="Modern combo vending machine fully stocked with snacks and drinks" />
+          <div class="no-cost-badge">
+            <div class="icon">🤝</div>
+            <strong>No Upfront Cost</strong>
+            <span>We invest. You enjoy the benefits.</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ══ STATS STRIP ══ -->
+  <div style="background:var(--red);padding:1.5rem 2rem;">
+    <div style="max-width:1000px;margin:0 auto;display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:1.5rem;text-align:center;">
+      <div>
+        <div style="font-size:2rem;font-weight:900;color:white;line-height:1;">No Upfront Cost</div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.82);letter-spacing:2px;text-transform:uppercase;margin-top:0.2rem;">Always Free to Get Started</div>
+      </div>
+      <div style="width:1px;height:40px;background:rgba(255,255,255,0.3);"></div>
+      <div>
+        <div style="font-size:2rem;font-weight:900;color:white;line-height:1;">48-Hour</div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.82);letter-spacing:2px;text-transform:uppercase;margin-top:0.2rem;">Service Response Time</div>
+      </div>
+      <div style="width:1px;height:40px;background:rgba(255,255,255,0.3);"></div>
+      <div>
+        <div style="font-size:2rem;font-weight:900;color:white;line-height:1;">East Valley</div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.82);letter-spacing:2px;text-transform:uppercase;margin-top:0.2rem;">Chandler · Gilbert · Mesa &amp; More</div>
+      </div>
+      <div style="width:1px;height:40px;background:rgba(255,255,255,0.3);"></div>
+      <div>
+        <div style="font-size:2rem;font-weight:900;color:white;line-height:1;">100%</div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.82);letter-spacing:2px;text-transform:uppercase;margin-top:0.2rem;">Local Owner-Operated</div>
+      </div>
+    </div>
+  </div>
 
   <!-- ══ SERVICES ══ -->
   <section id="services">
@@ -827,34 +1035,91 @@
     </div>
   </section>
 
+  <!-- ══ MACHINES ══ -->
+  <section id="machines">
+    <div class="container">
+      <div class="divider"><span class="divider-text">Our Machines</span></div>
+      <div class="machines-grid">
+
+        <!-- Snack & Combo Machine -->
+        <div class="machine-card">
+          <div class="mc-svg-wrap">
+            <img src="images/machine-snack.jpg" alt="Snack and combo vending machine" />
+          </div>
+          <div class="mc-body">
+            <h3>Snack &amp; Combo Machines</h3>
+            <div class="mc-sub">Chips · Candy · Snacks · Drinks</div>
+            <ul class="mc-features">
+              <li>Chips, cookies &amp; granola bars</li>
+              <li>Healthy snack options available</li>
+              <li>Bottled water &amp; beverages</li>
+              <li>Fully customizable selection</li>
+              <li>Fits any size break room</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Cold Drink Machine -->
+        <div class="machine-card">
+          <div class="mc-svg-wrap">
+            <img src="images/machine-drink.jpg" alt="Cold drink vending machine" />
+          </div>
+          <div class="mc-body">
+            <h3>Cold Drink Machines</h3>
+            <div class="mc-sub">Soda · Water · Energy · Juice</div>
+            <ul class="mc-features">
+              <li>Soda, sparkling &amp; still water</li>
+              <li>Sports &amp; energy drinks</li>
+              <li>Juice &amp; tea options</li>
+              <li>Kept perfectly chilled</li>
+              <li>High capacity — fewer restocks</li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /.machines-grid -->
+
+      <div class="product-pills">
+        <span class="product-pill">🥤 Coca-Cola &amp; Pepsi</span>
+        <span class="product-pill">💧 Water &amp; Sparkling</span>
+        <span class="product-pill">⚡ Energy Drinks</span>
+        <span class="product-pill">🥨 Chips &amp; Pretzels</span>
+        <span class="product-pill">🍫 Candy &amp; Chocolate</span>
+        <span class="product-pill">🥗 Healthy Options</span>
+        <span class="product-pill">🧃 Juice &amp; Tea</span>
+        <span class="product-pill">🍪 Cookies &amp; Granola</span>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ IDEAL FOR ══ -->
   <section id="ideal">
     <div class="container">
       <div class="divider"><span class="divider-text">Ideal For</span></div>
       <div class="ideal-grid">
         <div class="ideal-card">
-          <div class="card-bg">🏭</div>
+          <img class="card-photo" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=400&q=80" alt="Warehouse interior" loading="lazy"/>
           <div class="card-body">
             <div class="card-icon">🏭</div>
             <h3>Warehouses &amp; Distribution</h3>
           </div>
         </div>
         <div class="ideal-card">
-          <div class="card-bg">🏢</div>
+          <img class="card-photo" src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=400&q=80" alt="Apartment community" loading="lazy"/>
           <div class="card-body">
             <div class="card-icon">🏢</div>
             <h3>Apartment Communities</h3>
           </div>
         </div>
         <div class="ideal-card">
-          <div class="card-bg">🏨</div>
+          <img class="card-photo" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" alt="Hotel lobby" loading="lazy"/>
           <div class="card-body">
             <div class="card-icon">🏨</div>
             <h3>Hotels &amp; Hospitality</h3>
           </div>
         </div>
         <div class="ideal-card">
-          <div class="card-bg">💼</div>
+          <img class="card-photo" src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80" alt="Modern office" loading="lazy"/>
           <div class="card-body">
             <div class="card-icon">💼</div>
             <h3>Offices &amp; Workplaces</h3>
