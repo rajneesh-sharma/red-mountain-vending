@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Red Mountain Vending</title>
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23c0392b'/><polygon points='16,6 26,25 6,25' fill='white' opacity='0.92'/><polygon points='10,13 18,25 2,25' fill='white' opacity='0.5'/></svg>" />
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23f07820'/><polygon points='16,6 26,25 6,25' fill='white' opacity='0.92'/><polygon points='10,13 18,25 2,25' fill='white' opacity='0.5'/></svg>" />
   <style>
     *,
     *::before,
@@ -17,11 +17,11 @@
     }
 
     :root {
-      --red: #c0392b;
-      --red-dk: #922b21;
+      --red: #f07820;
+      --red-dk: #c05515;
       --navy: #1a2d5a;
       --navy-lt: #243f7a;
-      --orange: #e07b2a;
+      --orange: #f07820;
       --white: #ffffff;
       --light: #f4f6fa;
       --gray: #2c2c2c;
@@ -72,7 +72,7 @@
     }
 
     .nav-brand span em {
-      color: #f0a070;
+      color: #ffb060;
       font-style: normal;
     }
 
@@ -91,13 +91,13 @@
     }
 
     nav a:hover {
-      color: #f0a070;
+      color: #ffb060;
     }
 
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
-      background: linear-gradient(120deg, var(--navy) 0%, #1e3466 50%, #2a1a1a 100%);
+      background: linear-gradient(130deg, #0d1e3d 0%, var(--navy) 38%, #7a3008 65%, var(--orange) 100%);
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
@@ -229,8 +229,8 @@
     }
 
     .no-cost-badge {
-      background: var(--navy);
-      border: 3px solid var(--orange);
+      background: var(--orange);
+      border: 3px solid var(--navy);
       border-radius: 50%;
       width: 150px;
       height: 150px;
@@ -250,15 +250,15 @@
     .no-cost-badge strong {
       font-size: 1rem;
       font-weight: 900;
-      color: var(--white);
+      color: var(--navy);
       line-height: 1.2;
       text-transform: uppercase;
     }
 
     .no-cost-badge span {
       font-size: 0.72rem;
-      color: var(--orange);
-      font-weight: 600;
+      color: var(--navy);
+      font-weight: 700;
       margin-top: 0.25rem;
       display: block;
     }
@@ -397,7 +397,7 @@
       overflow: hidden;
       position: relative;
       aspect-ratio: 3/4;
-      background: var(--navy);
+      background: #1a1008;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -416,7 +416,7 @@
     .ideal-card .card-body {
       position: relative;
       z-index: 1;
-      background: linear-gradient(to top, rgba(26, 45, 90, 0.95) 60%, transparent);
+      background: linear-gradient(to top, rgba(20, 10, 3, 0.92) 55%, rgba(240, 120, 32, 0.18) 100%);
       padding: 1.5rem 1rem 1rem;
       display: flex;
       flex-direction: column;
@@ -526,19 +526,22 @@
 
     .cta-right {
       text-align: center;
+      background: var(--orange);
+      border-radius: 12px;
+      padding: 1.5rem 1rem;
     }
 
     .cta-right p {
       font-size: 0.88rem;
       font-weight: 800;
-      color: var(--white);
+      color: var(--navy);
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      line-height: 2;
+      line-height: 2.2;
     }
 
     .cta-right p span {
-      color: var(--orange);
+      color: var(--navy);
     }
 
     /* ── Contact Form ── */
@@ -590,7 +593,7 @@
     .field input:focus,
     .field textarea:focus {
       border-color: var(--red);
-      box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1);
+      box-shadow: 0 0 0 3px rgba(240, 120, 32, 0.18);
     }
 
     .field textarea {
@@ -711,11 +714,11 @@
 
     /* ── Machines Showcase ── */
     #machines {
-      background: var(--navy);
+      background: var(--white);
     }
 
     #machines .section-title {
-      color: var(--white);
+      color: var(--navy);
     }
 
     #machines .section-label {
@@ -724,12 +727,12 @@
     }
 
     #machines .divider-text {
-      color: var(--white);
+      color: var(--navy);
     }
 
     #machines .divider::before,
     #machines .divider::after {
-      background: rgba(255, 255, 255, 0.2);
+      background: var(--border);
     }
 
     .machines-grid {
@@ -739,19 +742,20 @@
     }
 
     .machine-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--white);
+      border: 2px solid var(--orange);
       border-radius: 16px;
       padding: 2rem 2rem 1.75rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 1.5rem;
-      transition: border-color 0.25s;
+      transition: border-color 0.25s, box-shadow 0.25s;
     }
 
     .machine-card:hover {
-      border-color: var(--orange);
+      border-color: var(--red-dk);
+      box-shadow: 0 8px 32px rgba(240, 120, 32, 0.18);
     }
 
     .mc-svg-wrap {
@@ -772,7 +776,7 @@
     }
 
     .mc-body h3 {
-      color: var(--white);
+      color: var(--navy);
       font-size: 1rem;
       font-weight: 900;
       text-transform: uppercase;
@@ -797,7 +801,7 @@
     }
 
     .mc-features li {
-      color: rgba(255, 255, 255, 0.78);
+      color: var(--muted);
       font-size: 0.85rem;
       display: flex;
       align-items: center;
@@ -822,11 +826,11 @@
     }
 
     .product-pill {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: #fff5ee;
+      border: 1px solid rgba(240, 120, 32, 0.25);
       border-radius: 50px;
       padding: 0.4rem 1rem;
-      color: rgba(255, 255, 255, 0.82);
+      color: var(--gray);
       font-size: 0.82rem;
       font-weight: 600;
     }
@@ -933,7 +937,7 @@
   <nav>
     <a href="#hero" class="nav-brand">
       <svg width="32" height="32" viewBox="0 0 36 36">
-        <circle cx="18" cy="18" r="18" fill="#c0392b" />
+        <circle cx="18" cy="18" r="18" fill="#f07820" />
         <polygon points="18,7 28,27 8,27" fill="white" opacity="0.9" />
         <polygon points="12,14 20,27 4,27" fill="white" opacity="0.5" />
       </svg>
@@ -1225,7 +1229,7 @@
   <footer>
     <div class="footer-left">
       <svg width="24" height="24" viewBox="0 0 36 36">
-        <circle cx="18" cy="18" r="18" fill="#c0392b" />
+        <circle cx="18" cy="18" r="18" fill="#f07820" />
         <polygon points="18,7 28,27 8,27" fill="white" opacity="0.9" />
         <polygon points="12,14 20,27 4,27" fill="white" opacity="0.5" />
       </svg>
