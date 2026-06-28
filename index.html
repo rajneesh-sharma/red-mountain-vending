@@ -5,8 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Red Mountain Vending</title>
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23f07820'/><polygon points='16,6 26,25 6,25' fill='white' opacity='0.92'/><polygon points='10,13 18,25 2,25' fill='white' opacity='0.5'/></svg>" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
   <style>
     *,
     *::before,
@@ -60,20 +59,15 @@
     .nav-brand {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
       text-decoration: none;
     }
 
-    .nav-brand span {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: 0.3px;
-    }
-
-    .nav-brand span em {
-      color: #ffb060;
-      font-style: normal;
+    .nav-brand img {
+      height: 48px;
+      width: auto;
+      display: block;
+      border-radius: 4px;
+      background: linear-gradient(to bottom, #fff5e6, #f07820);
     }
 
     nav ul {
@@ -866,6 +860,77 @@
       border-radius: var(--radius);
     }
 
+    /* ── Stats Strip ── */
+    .stats-strip {
+      background: var(--red);
+      padding: 1.5rem 2rem;
+    }
+
+    .stats-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 900;
+      color: white;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.82);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.3);
+      flex-shrink: 0;
+    }
+
+    /* ── Hamburger ── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: white;
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .nav-toggle.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
     /* ── Responsive ── */
     @media (max-width: 900px) {
       #hero {
@@ -879,7 +944,23 @@
       }
 
       .machine-photo-wrap {
-        max-width: 260px;
+        max-width: 280px;
+        margin: 0 auto;
+      }
+
+      .no-cost-badge {
+        width: 120px;
+        height: 120px;
+        bottom: -12px;
+        right: -12px;
+      }
+
+      .no-cost-badge strong {
+        font-size: 0.85rem;
+      }
+
+      .no-cost-badge span {
+        font-size: 0.65rem;
       }
 
       .services-grid {
@@ -888,6 +969,21 @@
 
       .machines-grid {
         grid-template-columns: 1fr;
+      }
+
+      .machine-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .mc-svg-wrap img {
+        max-height: 220px;
+        object-fit: cover;
+      }
+
+      .mc-features li {
+        justify-content: center;
       }
 
       .ideal-grid {
@@ -901,7 +997,6 @@
 
       .cta-mid {
         border: none;
-        padding: 0;
         border-top: 1px solid rgba(255, 255, 255, 0.15);
         border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         padding: 1.5rem 0;
@@ -911,33 +1006,120 @@
         grid-template-columns: 1fr;
         text-align: center;
       }
+
+      footer .footer-left {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 900px) {
+      #hero {
+        min-height: auto;
+      }
+
+      .stat-value {
+        font-size: 1.5rem;
+      }
     }
 
     @media (max-width: 600px) {
-      nav ul {
+      section {
+        padding: 3rem 1rem;
+      }
+
+      #cta {
+        padding: 3rem 1rem;
+      }
+
+      .stats-strip {
+        padding: 1.25rem 1rem;
+      }
+
+      .stats-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem 0.5rem;
+      }
+
+      .stat-divider {
         display: none;
+      }
+
+      .stat-value {
+        font-size: 1.2rem;
+      }
+
+      .stat-label {
+        font-size: 0.68rem;
+        letter-spacing: 1px;
+      }
+
+      /* Hamburger visible, links hidden by default */
+      .nav-toggle {
+        display: flex;
+      }
+
+      #nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--navy);
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        z-index: 99;
+      }
+
+      #nav-links.open {
+        display: flex;
+      }
+
+      #nav-links li a {
+        display: block;
+        padding: 0.85rem 2rem;
+        font-size: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
       }
 
       .services-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
       }
 
-      .machines-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .machine-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .mc-features li {
-        justify-content: center;
+      /* Make 5th service card span full width */
+      .service-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 200px;
+        margin: 0 auto;
       }
 
       .ideal-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+
+      .ideal-card {
+        aspect-ratio: 2/3;
+      }
+
+      .ideal-card h3 {
+        font-size: 0.65rem;
+        letter-spacing: 0.5px;
+      }
+
+      .ideal-card .card-icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .ideal-card .card-icon svg {
+        width: 16px;
+        height: 16px;
       }
 
       .form-row {
@@ -946,6 +1128,25 @@
 
       .form-wrap {
         padding: 1.5rem 1rem;
+      }
+
+      .no-cost-badge {
+        width: 100px;
+        height: 100px;
+        bottom: -10px;
+        right: -10px;
+      }
+
+      .no-cost-badge .icon {
+        font-size: 1.3rem;
+      }
+
+      .no-cost-badge strong {
+        font-size: 0.75rem;
+      }
+
+      .no-cost-badge span {
+        display: none;
       }
     }
   </style>
@@ -956,19 +1157,17 @@
   <!-- ══ NAV ══ -->
   <nav>
     <a href="#hero" class="nav-brand">
-      <svg width="32" height="32" viewBox="0 0 36 36">
-        <circle cx="18" cy="18" r="18" fill="#f07820" />
-        <polygon points="18,7 28,27 8,27" fill="white" opacity="0.9" />
-        <polygon points="12,14 20,27 4,27" fill="white" opacity="0.5" />
-      </svg>
-      <span>Red Mountain <em>Vending</em></span>
+      <img src="images/logo.png" alt="Red Mountain Vending" />
     </a>
-    <ul>
+    <ul id="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#machines">Machines</a></li>
       <li><a href="#ideal">Locations</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <!-- ══ HERO ══ -->
@@ -1001,26 +1200,26 @@
   </section>
 
   <!-- ══ STATS STRIP ══ -->
-  <div style="background:var(--red);padding:1.5rem 2rem;">
-    <div style="max-width:1000px;margin:0 auto;display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:1.5rem;text-align:center;">
-      <div>
-        <div style="font-size:2rem;font-weight:900;color:white;line-height:1;">No Upfront Cost</div>
-        <div style="font-size:0.78rem;color:rgba(255,255,255,0.82);letter-spacing:2px;text-transform:uppercase;margin-top:0.2rem;">Always Free to Get Started</div>
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat">
+        <div class="stat-value">No Upfront Cost</div>
+        <div class="stat-label">Always Free to Get Started</div>
       </div>
-      <div style="width:1px;height:40px;background:rgba(255,255,255,0.3);"></div>
-      <div>
-        <div style="font-size:2rem;font-weight:900;color:white;line-height:1;">48-Hour</div>
-        <div style="font-size:0.78rem;color:rgba(255,255,255,0.82);letter-spacing:2px;text-transform:uppercase;margin-top:0.2rem;">Service Response Time</div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-value">48-Hour</div>
+        <div class="stat-label">Service Response Time</div>
       </div>
-      <div style="width:1px;height:40px;background:rgba(255,255,255,0.3);"></div>
-      <div>
-        <div style="font-size:2rem;font-weight:900;color:white;line-height:1;">East Valley</div>
-        <div style="font-size:0.78rem;color:rgba(255,255,255,0.82);letter-spacing:2px;text-transform:uppercase;margin-top:0.2rem;">Chandler · Gilbert · Mesa &amp; More</div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-value">East Valley</div>
+        <div class="stat-label">Chandler · Gilbert · Mesa &amp; More</div>
       </div>
-      <div style="width:1px;height:40px;background:rgba(255,255,255,0.3);"></div>
-      <div>
-        <div style="font-size:2rem;font-weight:900;color:white;line-height:1;">100%</div>
-        <div style="font-size:0.78rem;color:rgba(255,255,255,0.82);letter-spacing:2px;text-transform:uppercase;margin-top:0.2rem;">Local Owner-Operated</div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Local Owner-Operated</div>
       </div>
     </div>
   </div>
@@ -1031,27 +1230,53 @@
       <div class="divider"><span class="divider-text">Full-Service Vending Solutions</span></div>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><rect x="7" y="4" width="10" height="6" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="16" x2="17" y2="16"/><rect x="9" y="19" width="6" height="2" rx="1"/></svg></div>
+          <div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2" />
+              <rect x="7" y="4" width="10" height="6" rx="1" />
+              <line x1="7" y1="13" x2="17" y2="13" />
+              <line x1="7" y1="16" x2="17" y2="16" />
+              <rect x="9" y="19" width="6" height="2" rx="1" />
+            </svg></div>
           <h3>Modern Vending Machines</h3>
           <p>A wide selection of snacks, drinks, and healthy options for every workplace.</p>
         </div>
         <div class="service-card">
-          <div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg></div>
+          <div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="5" width="20" height="14" rx="2" />
+              <line x1="2" y1="10" x2="22" y2="10" />
+              <line x1="6" y1="15" x2="10" y2="15" />
+            </svg></div>
           <h3>Cashless Payments</h3>
           <p>Credit/debit, mobile pay, and Apple/Google Pay accepted on all machines.</p>
         </div>
         <div class="service-card">
-          <div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+            </svg></div>
           <h3>Full Service &amp; Maintenance</h3>
           <p>We handle all stocking, maintenance, and customer service at no cost to you.</p>
         </div>
         <div class="service-card">
-          <div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg></div>
+          <div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+              <line x1="8" y1="12" x2="16" y2="12" />
+              <line x1="8" y1="16" x2="12" y2="16" />
+            </svg></div>
           <h3>Customized Inventory</h3>
           <p>We tailor product selections to fit your team and your specific space.</p>
         </div>
         <div class="service-card">
-          <div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="service-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg></div>
           <h3>Reliable. Local. Fast.</h3>
           <p>Local owner-operator with quick response times you can count on every time.</p>
         </div>
@@ -1122,30 +1347,48 @@
       <div class="divider"><span class="divider-text">Ideal For</span></div>
       <div class="ideal-grid">
         <div class="ideal-card">
-          <img class="card-photo" src="images/loc-warehouse.jpg" alt="Warehouse interior" loading="lazy"/>
+          <img class="card-photo" src="images/loc-warehouse.jpg" alt="Warehouse interior" loading="lazy" />
           <div class="card-body">
-            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                <line x1="12" y1="22.08" x2="12" y2="12" />
+              </svg></div>
             <h3>Warehouses &amp; Distribution</h3>
           </div>
         </div>
         <div class="ideal-card">
-          <img class="card-photo" src="images/loc-apartment.jpg" alt="Apartment community" loading="lazy"/>
+          <img class="card-photo" src="images/loc-apartment.jpg" alt="Apartment community" loading="lazy" />
           <div class="card-body">
-            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg></div>
             <h3>Apartment Communities</h3>
           </div>
         </div>
         <div class="ideal-card">
-          <img class="card-photo" src="images/loc-hotel.jpg" alt="Hotel lobby" loading="lazy"/>
+          <img class="card-photo" src="images/loc-hotel.jpg" alt="Hotel lobby" loading="lazy" />
           <div class="card-body">
-            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
+              </svg></div>
             <h3>Hotels &amp; Hospitality</h3>
           </div>
         </div>
         <div class="ideal-card">
-          <img class="card-photo" src="images/loc-office.jpg" alt="Modern office" loading="lazy"/>
+          <img class="card-photo" src="images/loc-office.jpg" alt="Modern office" loading="lazy" />
           <div class="card-body">
-            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" />
+                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+              </svg></div>
             <h3>Offices &amp; Workplaces</h3>
           </div>
         </div>
@@ -1165,25 +1408,44 @@
       </div>
       <div class="cta-mid">
         <div class="contact-item">
-          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.57a16 16 0 0 0 6.29 6.29l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.57a16 16 0 0 0 6.29 6.29l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg></div>
           <span>(XXX) XXX-XXXX</span>
         </div>
         <div class="contact-item">
-          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg></div>
           <span>hello@redmountainsvending.com</span>
         </div>
         <div class="contact-item">
-          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg></div>
           <span>www.redmountainsvending.com</span>
         </div>
         <div class="contact-item">
-          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg></div>
           <span>Proudly serving local businesses</span>
         </div>
       </div>
       <div class="cta-right">
         <p>
-          Better<br /><span>Options.</span><br />Happier<br /><span>People.</span><br />Stronger<br /><span>Workplaces.</span>
+          <span>Better Options</span><br />
+          <span>Happier People</span><br />
+          <span>Stronger Workplaces</span>
         </p>
       </div>
     </div>
@@ -1248,11 +1510,8 @@
   <!-- ══ FOOTER ══ -->
   <footer>
     <div class="footer-left">
-      <svg width="24" height="24" viewBox="0 0 36 36">
-        <circle cx="18" cy="18" r="18" fill="#f07820" />
-        <polygon points="18,7 28,27 8,27" fill="white" opacity="0.9" />
-        <polygon points="12,14 20,27 4,27" fill="white" opacity="0.5" />
-      </svg>
+      <img src="images/logo.png" alt="Red Mountain Vending"
+        style="height:36px;width:auto;border-radius:3px;background:linear-gradient(to bottom,#fff5e6,#f07820);" />
       <span>Local business. Local service. Local care.</span>
       <strong style="color:rgba(255,255,255,0.4)">|</strong>
       <strong>Thank you for supporting local!</strong>
@@ -1297,6 +1556,21 @@
       btn.textContent = 'Schedule My Free Consultation →';
       btn.disabled = false;
     });
+
+    // Hamburger menu toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    navToggle.addEventListener('click', () =>
+    {
+      navToggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    // Close menu when a link is tapped
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () =>
+    {
+      navToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+    }));
   </script>
 </body>
 
