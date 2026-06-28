@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Red Mountains Vending</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23c0392b'/><polygon points='16,6 26,25 6,25' fill='white' opacity='0.92'/><polygon points='10,13 18,25 2,25' fill='white' opacity='0.5'/></svg>" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #c0392b;
+      --red-dk: #922b21;
+      --navy:   #1a2d5a;
+      --navy-lt:#243f7a;
+      --orange: #e07b2a;
+      --white:  #ffffff;
+      --light:  #f4f6fa;
+      --gray:   #2c2c2c;
+      --muted:  #666;
+      --border: #dde0e8;
+      --radius: 8px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.10);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--gray); background: var(--white); line-height: 1.6; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 64px;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .nav-brand span { font-size: 1.1rem; font-weight: 800; color: var(--white); letter-spacing: 0.3px; }
+    .nav-brand span em { color: #f0a070; font-style: normal; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav a { text-decoration: none; color: rgba(255,255,255,0.8); font-weight: 500; font-size: 0.92rem; transition: color 0.2s; }
+    nav a:hover { color: #f0a070; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(120deg, var(--navy) 0%, #1e3466 50%, #2a1a1a 100%);
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 2rem;
+      padding: 6rem 4rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    #hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+      background: var(--white);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .hero-left { position: relative; z-index: 1; }
+    .hero-tagline {
+      font-size: 0.88rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 1rem;
+    }
+    .hero-tagline span { margin: 0 0.5rem; opacity: 0.5; }
+    #hero h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; line-height: 1.1;
+      color: var(--white); margin-bottom: 0.5rem; letter-spacing: -0.5px;
+    }
+    #hero h1 .script {
+      display: block; font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic; font-weight: 400; font-size: 1.15em;
+      color: var(--orange);
+    }
+    #hero p { color: rgba(255,255,255,0.78); font-size: 1rem; max-width: 480px; margin: 1.2rem 0 2rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block; padding: 0.8rem 2rem;
+      background: var(--red); color: var(--white);
+      font-weight: 700; font-size: 0.95rem; border-radius: 50px;
+      text-decoration: none; transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--red-dk); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-block; padding: 0.8rem 2rem;
+      border: 2px solid rgba(255,255,255,0.4); color: var(--white);
+      font-weight: 600; font-size: 0.95rem; border-radius: 50px;
+      text-decoration: none; transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    /* No Upfront Cost badge */
+    .hero-right { position: relative; z-index: 1; display: flex; justify-content: center; }
+    .vending-visual {
+      width: 100%; max-width: 380px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px; padding: 2rem;
+      display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+    }
+    .machine-icon { font-size: 7rem; line-height: 1; }
+    .no-cost-badge {
+      background: var(--navy); border: 3px solid var(--orange);
+      border-radius: 50%; width: 150px; height: 150px;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; padding: 1rem;
+    }
+    .no-cost-badge .icon { font-size: 1.8rem; margin-bottom: 0.3rem; }
+    .no-cost-badge strong { font-size: 1rem; font-weight: 900; color: var(--white); line-height: 1.2; text-transform: uppercase; }
+    .no-cost-badge span { font-size: 0.72rem; color: var(--orange); font-weight: 600; margin-top: 0.25rem; display: block; }
+    .serving-badge {
+      background: var(--red); color: var(--white);
+      padding: 0.6rem 1.2rem; border-radius: 6px; text-align: center;
+      font-size: 0.82rem; font-weight: 600; line-height: 1.5;
+    }
+    .serving-badge strong { display: block; font-size: 0.68rem; letter-spacing: 1px; text-transform: uppercase; opacity: 0.85; }
+
+    /* ── Section shared ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-label {
+      display: inline-block; font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 3px; text-transform: uppercase; color: var(--red);
+      border-bottom: 2px solid var(--red); padding-bottom: 4px; margin-bottom: 0.75rem;
+    }
+    .section-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 900; color: var(--navy); }
+    .divider {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .divider-text {
+      font-size: 1rem; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--navy); white-space: nowrap;
+    }
+
+    /* ── Services ── */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;
+    }
+    .service-card { text-align: center; }
+    .service-icon-wrap {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: #fef0ea; display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 1rem; font-size: 2rem;
+    }
+    .service-card h3 {
+      font-size: 0.82rem; font-weight: 900; color: var(--navy);
+      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; line-height: 1.3;
+    }
+    .service-card p { font-size: 0.83rem; color: var(--muted); }
+
+    /* ── Ideal For ── */
+    #ideal { background: var(--light); }
+    .ideal-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    }
+    .ideal-card {
+      border-radius: var(--radius); overflow: hidden;
+      position: relative; aspect-ratio: 3/4;
+      background: var(--navy);
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .ideal-card .card-bg {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; opacity: 0.18;
+    }
+    .ideal-card .card-body {
+      position: relative; z-index: 1;
+      background: linear-gradient(to top, rgba(26,45,90,0.95) 60%, transparent);
+      padding: 1.5rem 1rem 1rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    }
+    .ideal-card .card-icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    }
+    .ideal-card h3 {
+      font-size: 0.78rem; font-weight: 900; color: var(--white);
+      text-transform: uppercase; letter-spacing: 1px; text-align: center;
+    }
+
+    /* ── CTA ── */
+    #cta { background: var(--navy); padding: 4rem 2rem; }
+    .cta-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .cta-left { display: flex; align-items: center; gap: 1.5rem; }
+    .cta-icon { font-size: 4rem; flex-shrink: 0; }
+    .cta-left h2 { font-size: 1.6rem; font-weight: 900; color: var(--white); line-height: 1.2; }
+    .cta-left h2 span { color: var(--orange); }
+    .cta-left p { color: rgba(255,255,255,0.75); font-size: 0.9rem; margin-top: 0.5rem; }
+    .cta-left p strong { color: var(--orange); font-weight: 700; }
+    .cta-mid { border-left: 1px solid rgba(255,255,255,0.15); border-right: 1px solid rgba(255,255,255,0.15); padding: 0 2rem; }
+    .contact-item { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .contact-item .ci-icon {
+      width: 36px; height: 36px; border-radius: 50%; background: var(--red);
+      display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-item span { color: rgba(255,255,255,0.9); font-size: 0.9rem; font-weight: 500; }
+    .cta-right { text-align: center; }
+    .cta-right p { font-size: 0.88rem; font-weight: 800; color: var(--white); text-transform: uppercase; letter-spacing: 1.5px; line-height: 2; }
+    .cta-right p span { color: var(--orange); }
+
+    /* ── Contact Form ── */
+    #contact { background: var(--light); }
+    .form-wrap {
+      max-width: 680px; margin: 0 auto;
+      background: var(--white); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 2.5rem 2rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .field { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 1rem; }
+    .field label { font-size: 0.83rem; font-weight: 700; color: var(--navy); }
+    .field input, .field textarea {
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      padding: 0.65rem 0.9rem; font-size: 0.95rem; font-family: inherit;
+      color: var(--gray); background: var(--white); outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field input:focus, .field textarea:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+    }
+    .field textarea { resize: vertical; min-height: 120px; }
+    .submit-btn {
+      width: 100%; padding: 0.9rem; background: var(--red); color: var(--white);
+      font-size: 1rem; font-weight: 800; border: none; border-radius: 50px;
+      cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+      transition: background 0.2s, transform 0.2s; margin-top: 0.5rem;
+    }
+    .submit-btn:hover { background: var(--red-dk); transform: translateY(-1px); }
+    .form-note { text-align: center; font-size: 0.8rem; color: #999; margin-top: 0.75rem; }
+    #form-status { display: none; text-align: center; padding: 1rem; border-radius: var(--radius); margin-top: 1rem; font-weight: 600; }
+    #form-status.success { background: #d4edda; color: #155724; display: block; }
+    #form-status.error   { background: #f8d7da; color: #721c24; display: block; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--gray); color: rgba(255,255,255,0.7);
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: center; padding: 1.25rem 2rem;
+      font-size: 0.85rem; gap: 1rem;
+    }
+    footer .footer-left { display: flex; align-items: center; gap: 1rem; }
+    footer .footer-left span { color: var(--orange); font-style: italic; font-weight: 500; }
+    footer .footer-right { color: rgba(255,255,255,0.5); font-size: 0.78rem; }
+    footer strong { color: var(--white); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; padding: 5rem 1.5rem 3rem; text-align: center; }
+      .hero-btns { justify-content: center; }
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+      .ideal-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .cta-mid { border: none; padding: 0; border-top: 1px solid rgba(255,255,255,0.15); border-bottom: 1px solid rgba(255,255,255,0.15); padding: 1.5rem 0; }
+      footer { grid-template-columns: 1fr; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .ideal-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-row { grid-template-columns: 1fr; }
+      .form-wrap { padding: 1.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#hero" class="nav-brand">
+    <svg width="32" height="32" viewBox="0 0 36 36"><circle cx="18" cy="18" r="18" fill="#c0392b"/><polygon points="18,7 28,27 8,27" fill="white" opacity="0.9"/><polygon points="12,14 20,27 4,27" fill="white" opacity="0.5"/></svg>
+    <span>Red Mountains <em>Vending</em></span>
+  </a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#ideal">Locations</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-tagline">Local<span>•</span>Reliable<span>•</span>Refreshing</p>
+    <h1>
+      Convenience That Works
+      <span class="script">for your business.</span>
+    </h1>
+    <p>We provide modern vending solutions that keep your employees, residents, and guests happy — so they can stay focused, productive, and on site.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Schedule Free Consultation</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="vending-visual">
+      <div class="machine-icon">🏔️</div>
+      <div class="no-cost-badge">
+        <div class="icon">🤝</div>
+        <strong>No Upfront Cost</strong>
+        <span>We invest. You enjoy the benefits.</span>
+      </div>
+      <div class="serving-badge">
+        <strong>📍 Proudly Serving</strong>
+        Local businesses across the region
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="container">
+    <div class="divider"><span class="divider-text">Full-Service Vending Solutions</span></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon-wrap">🏧</div>
+        <h3>Modern Vending Machines</h3>
+        <p>A wide selection of snacks, drinks, and healthy options for every workplace.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap">💳</div>
+        <h3>Cashless Payments</h3>
+        <p>Credit/debit, mobile pay, and Apple/Google Pay accepted on all machines.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap">🔧</div>
+        <h3>Full Service &amp; Maintenance</h3>
+        <p>We handle all stocking, maintenance, and customer service at no cost to you.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap">📋</div>
+        <h3>Customized Inventory</h3>
+        <p>We tailor product selections to fit your team and your specific space.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap">⚡</div>
+        <h3>Reliable. Local. Fast.</h3>
+        <p>Local owner-operator with quick response times you can count on every time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ IDEAL FOR ══ -->
+<section id="ideal">
+  <div class="container">
+    <div class="divider"><span class="divider-text">Ideal For</span></div>
+    <div class="ideal-grid">
+      <div class="ideal-card">
+        <div class="card-bg">🏭</div>
+        <div class="card-body">
+          <div class="card-icon">🏭</div>
+          <h3>Warehouses &amp; Distribution</h3>
+        </div>
+      </div>
+      <div class="ideal-card">
+        <div class="card-bg">🏢</div>
+        <div class="card-body">
+          <div class="card-icon">🏢</div>
+          <h3>Apartment Communities</h3>
+        </div>
+      </div>
+      <div class="ideal-card">
+        <div class="card-bg">🏨</div>
+        <div class="card-body">
+          <div class="card-icon">🏨</div>
+          <h3>Hotels &amp; Hospitality</h3>
+        </div>
+      </div>
+      <div class="ideal-card">
+        <div class="card-bg">💼</div>
+        <div class="card-body">
+          <div class="card-icon">💼</div>
+          <h3>Offices &amp; Workplaces</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BANNER ══ -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="cta-icon">📅</div>
+      <div>
+        <h2>Schedule Your<br/><span>Free Consultation</span></h2>
+        <p>Let's find the perfect solution for your location — <strong>at no cost or obligation.</strong></p>
+      </div>
+    </div>
+    <div class="cta-mid">
+      <div class="contact-item">
+        <div class="ci-icon">📞</div>
+        <span>(XXX) XXX-XXXX</span>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">✉️</div>
+        <span>hello@redmountainsvending.com</span>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">🌐</div>
+        <span>www.redmountainsvending.com</span>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">📍</div>
+        <span>Proudly serving local businesses</span>
+      </div>
+    </div>
+    <div class="cta-right">
+      <p>Better<br/><span>Options.</span><br/>Happier<br/><span>People.</span><br/>Stronger<br/><span>Workplaces.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT FORM ══ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-title">Request a Machine for Your Location</h2>
+      <p style="color:var(--muted); margin-top:0.5rem;">Fill out the form and we'll reach out within one business day.</p>
+    </div>
+    <div class="form-wrap">
+      <!--
+        SETUP: Replace YOUR_FORM_ID below with your Formspree form ID.
+        Free signup at https://formspree.io
+      -->
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <div class="field">
+            <label for="first-name">First Name *</label>
+            <input type="text" id="first-name" name="first_name" required placeholder="Jane" />
+          </div>
+          <div class="field">
+            <label for="last-name">Last Name *</label>
+            <input type="text" id="last-name" name="last_name" required placeholder="Smith" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="jane@company.com" />
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="(555) 000-0000" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="business-name">Business Name *</label>
+          <input type="text" id="business-name" name="business_name" required placeholder="Acme Corp" />
+        </div>
+        <div class="field">
+          <label for="address">Business Address *</label>
+          <input type="text" id="address" name="address" required placeholder="123 Main St, City, State, ZIP" />
+        </div>
+        <div class="field">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" placeholder="Tell us about your location — number of employees, type of facility, product preferences…"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Schedule My Free Consultation →</button>
+        <p class="form-note">We respect your privacy. Your information will never be shared or sold.</p>
+        <div id="form-status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-left">
+    <svg width="24" height="24" viewBox="0 0 36 36"><circle cx="18" cy="18" r="18" fill="#c0392b"/><polygon points="18,7 28,27 8,27" fill="white" opacity="0.9"/><polygon points="12,14 20,27 4,27" fill="white" opacity="0.5"/></svg>
+    <span>Local business. Local service. Local care.</span>
+    <strong style="color:rgba(255,255,255,0.4)">|</strong>
+    <strong>Thank you for supporting local!</strong>
+  </div>
+  <div class="footer-right">&copy; <span id="year"></span> Red Mountains Vending. All rights reserved.</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    status.className = '';
+    status.style.display = 'none';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      if (res.ok) {
+        status.textContent = '✅ Thank you! We received your inquiry and will be in touch within one business day.';
+        status.className = 'success';
+        form.reset();
+      } else { throw new Error(); }
+    } catch {
+      status.textContent = '❌ Something went wrong. Please try again or contact us directly.';
+      status.className = 'error';
+    }
+
+    btn.textContent = 'Schedule My Free Consultation →';
+    btn.disabled = false;
+  });
+</script>
+</body>
+</html>
