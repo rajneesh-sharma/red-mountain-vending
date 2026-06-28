@@ -402,6 +402,13 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+
+    .ideal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(240, 120, 32, 0.35);
     }
 
     .ideal-card .card-bg {
@@ -417,33 +424,45 @@
     .ideal-card .card-body {
       position: relative;
       z-index: 1;
-      background: linear-gradient(to top, rgba(20, 10, 3, 0.92) 55%, rgba(240, 120, 32, 0.18) 100%);
+      background: linear-gradient(to top, rgba(8, 12, 24, 0.96) 0%, rgba(8, 12, 24, 0.7) 55%, transparent 100%);
       padding: 1.5rem 1rem 1rem;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
     }
 
     .ideal-card .card-icon {
-      width: 48px;
-      height: 48px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: var(--orange);
+      box-shadow: 0 0 0 3px rgba(240, 120, 32, 0.35);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .ideal-card .card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 2.2;
     }
 
     .ideal-card h3 {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 900;
       color: var(--white);
       text-transform: uppercase;
       letter-spacing: 1px;
-      text-align: center;
+      text-align: left;
+      line-height: 1.3;
+    }
+
+    .ideal-card:hover .card-icon {
+      background: var(--red-dk);
+      box-shadow: 0 0 0 4px rgba(240, 120, 32, 0.5);
     }
 
     /* ── CTA ── */
@@ -1105,28 +1124,28 @@
         <div class="ideal-card">
           <img class="card-photo" src="images/loc-warehouse.jpg" alt="Warehouse interior" loading="lazy"/>
           <div class="card-body">
-            <div class="card-icon">🏭</div>
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
             <h3>Warehouses &amp; Distribution</h3>
           </div>
         </div>
         <div class="ideal-card">
           <img class="card-photo" src="images/loc-apartment.jpg" alt="Apartment community" loading="lazy"/>
           <div class="card-body">
-            <div class="card-icon">🏢</div>
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
             <h3>Apartment Communities</h3>
           </div>
         </div>
         <div class="ideal-card">
           <img class="card-photo" src="images/loc-hotel.jpg" alt="Hotel lobby" loading="lazy"/>
           <div class="card-body">
-            <div class="card-icon">🏨</div>
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
             <h3>Hotels &amp; Hospitality</h3>
           </div>
         </div>
         <div class="ideal-card">
           <img class="card-photo" src="images/loc-office.jpg" alt="Modern office" loading="lazy"/>
           <div class="card-body">
-            <div class="card-icon">💼</div>
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
             <h3>Offices &amp; Workplaces</h3>
           </div>
         </div>
