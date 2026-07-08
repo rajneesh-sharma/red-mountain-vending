@@ -7,17 +7,21 @@
 
   <!-- Primary SEO -->
   <title>Red Mountain Vending | Free Vending Machines in Chandler, Gilbert &amp; Mesa, AZ</title>
-  <meta name="description" content="Free vending machine installation for businesses in Chandler, Gilbert, Mesa &amp; the East Valley. No upfront cost, cashless payments, 48-hr service response." />
-  <meta name="keywords" content="vending machines Chandler AZ, vending machines Gilbert AZ, vending machines Mesa AZ, East Valley vending, office vending machine, free vending machine installation, snack machine, drink machine Arizona, workplace vending" />
+  <meta name="description"
+    content="Free vending machine installation for businesses in Chandler, Gilbert, Mesa &amp; the East Valley. No upfront cost, cashless payments, 48-hr service response." />
+  <meta name="keywords"
+    content="vending machines Chandler AZ, vending machines Gilbert AZ, vending machines Mesa AZ, East Valley vending, office vending machine, free vending machine installation, snack machine, drink machine Arizona, workplace vending" />
   <meta name="author" content="Red Mountain Vending" />
   <meta name="robots" content="index, follow" />
+  <meta name="google-site-verification" content="0M3krUCQUWk4ij5oZ-3-V_U1g1bv1SK11x0sRUFIa4E" />
   <link rel="canonical" href="https://redmountainvending.com/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://redmountainvending.com/" />
   <meta property="og:title" content="Red Mountain Vending | Free Vending Machines in the East Valley, AZ" />
-  <meta property="og:description" content="Free vending machine installation for Chandler, Gilbert &amp; Mesa businesses. No upfront cost, cashless payments, 48-hr service response." />
+  <meta property="og:description"
+    content="Free vending machine installation for Chandler, Gilbert &amp; Mesa businesses. No upfront cost, cashless payments, 48-hr service response." />
   <meta property="og:image" content="https://redmountainvending.com/images/machine-hero.jpg" />
   <meta property="og:image:alt" content="Red Mountain Vending machine stocked with drinks and snacks" />
   <meta property="og:site_name" content="Red Mountain Vending" />
@@ -26,7 +30,8 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Red Mountain Vending | Free Vending Machines in the East Valley, AZ" />
-  <meta name="twitter:description" content="Free vending machine installation for Chandler, Gilbert &amp; Mesa businesses. No upfront cost, cashless payments, 48-hr service response." />
+  <meta name="twitter:description"
+    content="Free vending machine installation for Chandler, Gilbert &amp; Mesa businesses. No upfront cost, cashless payments, 48-hr service response." />
   <meta name="twitter:image" content="https://redmountainvending.com/images/machine-hero.jpg" />
 
   <!-- Geo / Local SEO -->
@@ -949,6 +954,39 @@
       flex-shrink: 0;
     }
 
+    /* ── FAQ ── */
+    #faq {
+      background: var(--light);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border-left: 4px solid var(--orange);
+      box-shadow: var(--shadow);
+    }
+
+    .faq-item h3 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .faq-item p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
     /* ── Hamburger ── */
     .nav-toggle {
       display: none;
@@ -1173,6 +1211,10 @@
         height: 16px;
       }
 
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
       .form-row {
         grid-template-columns: 1fr;
       }
@@ -1202,6 +1244,64 @@
     }
   </style>
 
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does it cost to get a vending machine for my business?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nothing. Red Mountain Vending covers 100% of the installation, stocking, and ongoing maintenance — at no upfront cost to you, ever."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas does Red Mountain Vending serve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We serve businesses throughout the East Valley including Chandler, Gilbert, Mesa, Tempe, Scottsdale, Queen Creek, and Ahwatukee, Arizona."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How quickly do you respond to vending machine service issues?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We guarantee a 48-hour service response time. As a local owner-operated business, fast turnaround is a core part of what we offer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What payment methods do your vending machines accept?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All machines accept credit and debit cards, Apple Pay, Google Pay, and mobile payments. No cash required — fully cashless."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I choose what products go in my vending machine?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We customize the inventory to fit your team's preferences and your facility's needs — whether that's healthy snacks, popular brands, or a specific drink mix."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I get a vending machine for my office, warehouse, or apartment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fill out the contact form on our website to schedule a free, no-obligation consultation. We'll find the right solution for your location."
+        }
+      }
+    ]
+  }
+  </script>
+
   <!-- Structured Data: LocalBusiness -->
   <script type="application/ld+json">
   {
@@ -1227,8 +1327,14 @@
       { "@type": "City", "name": "Mesa" },
       { "@type": "City", "name": "Tempe" },
       { "@type": "City", "name": "Scottsdale" },
+      { "@type": "City", "name": "North Scottsdale" },
       { "@type": "City", "name": "Queen Creek" },
-      { "@type": "City", "name": "Ahwatukee" }
+      { "@type": "City", "name": "Ahwatukee" },
+      { "@type": "City", "name": "Glendale" },
+      { "@type": "City", "name": "Phoenix" },
+      { "@type": "City", "name": "North Phoenix" },
+      { "@type": "City", "name": "East Valley" },
+      { "@type": "City", "name": "Paradise Valley" }
     ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -1284,6 +1390,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#machines">Machines</a></li>
       <li><a href="#ideal">Locations</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
@@ -1299,8 +1406,8 @@
         Convenience That Works
         <span class="script">for your business.</span>
       </h1>
-      <p>We provide modern vending solutions that keep your employees, residents, and guests happy — so they can stay
-        focused, productive, and on site.</p>
+      <p>We provide modern vending solutions to businesses across Chandler, Gilbert, Mesa, and the East Valley — keeping
+        your employees, residents, and guests happy, focused, and on site.</p>
       <div class="hero-btns">
         <a href="#contact" class="btn-primary">Schedule Free Consultation</a>
         <a href="#services" class="btn-outline">Our Services</a>
@@ -1309,7 +1416,8 @@
     <div class="hero-right">
       <div class="hero-machine-wrap">
         <div class="machine-photo-wrap">
-          <img src="images/machine-hero.jpg" alt="Red Mountain Vending machine fully stocked with cold drinks and snacks" fetchpriority="high" />
+          <img src="images/machine-hero.jpg"
+            alt="Red Mountain Vending machine fully stocked with cold drinks and snacks" fetchpriority="high" />
           <div class="no-cost-badge">
             <div class="icon">🤝</div>
             <strong>No Upfront Cost</strong>
@@ -1518,6 +1626,48 @@
     </div>
   </section>
 
+  <!-- ══ FAQ ══ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Common Questions</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>How much does it cost to get a vending machine?</h3>
+          <p>Nothing. Red Mountain Vending covers 100% of the installation, stocking, and ongoing maintenance — at no
+            upfront cost to you, ever.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What areas do you serve?</h3>
+          <p>We serve businesses throughout the East Valley including Chandler, Gilbert, Mesa, Tempe, Scottsdale, Queen
+            Creek, and Ahwatukee.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How quickly do you respond to service issues?</h3>
+          <p>We guarantee a 48-hour service response time. As a local owner-operated business, fast turnaround is a core
+            part of what we offer.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What payment methods do your machines accept?</h3>
+          <p>All machines accept credit/debit cards, Apple Pay, Google Pay, and mobile payments. No cash required —
+            fully cashless.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I choose what products go in my machine?</h3>
+          <p>Yes. We customize the inventory to fit your team's preferences — whether that's healthy options, popular
+            brands, or a specific drink mix.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How do I get started?</h3>
+          <p>Fill out our contact form to schedule a free, no-obligation consultation. We'll find the right fit for your
+            location.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ CTA BANNER ══ -->
   <section id="cta">
     <div class="cta-inner">
@@ -1563,7 +1713,7 @@
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg></div>
-          <span>Proudly serving local businesses</span>
+          <span>Chandler · Gilbert · Mesa · Tempe &amp; more</span>
         </div>
       </div>
       <div class="cta-right">
